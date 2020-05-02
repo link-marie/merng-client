@@ -9,9 +9,8 @@ import DeleteButton from './DeleteButton';
 import MyPopup from '../util/MyPopup'
 
 /**
- * TODO: moment: Deprecation warning: value provided is not in a recognized RFC2822 
- * Invalid date がでているからかも
- * または 'YYYY-MM-DD hh:mm:ss' など createdAtに ISOフォーマットをする必要があるかも
+ * moment: Deprecation warning: value provided is not in a recognized RFC2822 
+ * Invalid date がでていたから
  * @param {*} param0 
  */
 const PostCard = ({
