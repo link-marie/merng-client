@@ -17,7 +17,6 @@ function Home() {
     loading,
     data,
   } = useQuery(FETCH_POSTS_QUERY);
-  if (loading) return <p>Loading ...</p>;
   
   return (
     <Grid columns={3}>
@@ -31,7 +30,7 @@ function Home() {
           </Grid.Column>
         )}
         {loading ? (
-          <h1>Loading posts..</h1>
+          <h3>Loading posts..</h3>
         ) : (
           <Transition.Group>
             {data.getPosts &&
