@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
+import Utl from '../util/utl'
 
 function PostForm() {
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
@@ -14,11 +15,25 @@ function PostForm() {
   const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
     variables: values,
     update(proxy, result) {
-      const data = proxy.readQuery({
+      const localData = proxy.readQuery({
         query: FETCH_POSTS_QUERY
       });
-      data.getPosts = [result.data.createPost, ...data.getPosts];
-      proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
+
+      const localClone = Utl.cloneDeepLodash(localData)
+
+      const postResult = result.data.createPost
+      const postExisting = localClone.getPosts
+      localClone.getPosts = [postResult, ...postExisting];
+
+      proxy.writeQuery({ 
+        query: FETCH_POSTS_QUERY, 
+        data: localClone,
+        variables: {
+          id: values.id,
+          body: values.body
+        }
+      });
+      // Post後フィールドをリセット
       values.body = '';
     }
   });
