@@ -28,10 +28,6 @@ function PostForm() {
       proxy.writeQuery({ 
         query: FETCH_POSTS_QUERY, 
         data: localClone,
-        variables: {
-          id: values.id,
-          body: values.body
-        }
       });
       // Post後フィールドをリセット
       values.body = '';
