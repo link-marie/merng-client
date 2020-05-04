@@ -10,7 +10,8 @@
   margin: auto;
 }
 
-.ui.teal.button:focus,
-.ui.teal.buttons .button:focus {
-  background-color: #00b5ad !important;
+.ui.teal.button:hover
+{
+  background-color: #00b5ad;
 }
+
