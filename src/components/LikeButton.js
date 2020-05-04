@@ -13,7 +13,8 @@ const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
     if (user && likes.find((like) => like.username === user.username)) {
       setLiked(true);
     } else setLiked(false);
-  }, [user, likes]);
+  }, 
+  [user, likes])  // 第2引数: 最適化項目。この項目が変わった時のみEffect処理する
 
   const [likePost] = useMutation(LIKE_POST_MUTATION, {
     variables: { postId: id }
