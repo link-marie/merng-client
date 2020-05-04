@@ -18,9 +18,14 @@ import DeleteButton from '../components/DeleteButton';
 import MyPopup from '../util/MyPopup'
 import { FETCH_POST_QUERY } from '../util/graphql';
 
+/**
+ * 
+ * @param {*} props postIdを取得する
+ */
 function SinglePost(props) {
   const postId = props.match.params.postId;
   const { user } = useContext(AuthContext);
+  // Referenceを設定して参照できるようにする
   const commentInputRef = useRef(null);
 
   const [comment, setComment] = useState('');
@@ -39,6 +44,7 @@ function SinglePost(props) {
   ] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
       setComment('');
+      // 参照領域をぼかす
       commentInputRef.current.blur();
     },
     variables: {
@@ -56,7 +62,9 @@ function SinglePost(props) {
     props.history.push('/');
   }
 
+  // 内容を保持する
   let postMarkup;
+
   if (!data.getPost) {
     postMarkup = <p>Loading post..</p>;
   } else {
