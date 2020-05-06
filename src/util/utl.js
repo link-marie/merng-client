@@ -1,5 +1,8 @@
 import Lodash from 'lodash'
 
+const strJwtToken = 'jwtToken'
+const strBearer = 'Bearer'
+
 export default class Utl {
 
   static cloneDeepLodash(obj) {
@@ -39,5 +42,4 @@ export default class Utl {
 
 }
 
-
-
+export { strJwtToken, strBearer,};
